@@ -16,10 +16,20 @@ pipeline {
             }
         }
 
-        stage("NodeJS test"){
+        stage("Testing some random nodejs, cloning"){
             steps{
-                echo "simple test below"
-                sh 'npm config ls'
+                git 'https://github.com/gustavoapolinario/node-todo-frontend'
+            }
+        }
+        stage("installing node dependencies"){
+            steps{
+                sh 'npm install'
+            }
+        }
+        stage("running node test"){
+            steps{
+                sh "npm test"
+                echo "test completed"
             }
         }
 	}
