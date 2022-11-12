@@ -1,21 +1,22 @@
 pipeline {
 	agent any
 	stages {
-		stage('Checkout SCM') {
+		stage('First pipeline testing') {
 			steps {
-				git '/home/JenkinsDependencyCheckTest'
+                echo "We're in the first pipeline, working as intended."
 			}
 		}
 
-		stage('OWASP DependencyCheck') {
-			steps {
-				dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'Default'
-			}
-		}
-	}	
-	post {
-		success {
-			dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-		}
+        stage("OWASP DependencyCheck"){
+            steps {
+                dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'Default'
+            }
+        }
 	}
+
+    post {
+        success{
+            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+        }
+    }
 }
