@@ -1,5 +1,8 @@
 pipeline {
 	agent any
+
+    tools {nodejs "node"}
+
 	stages {
 		stage('First pipeline testing') {
 			steps {
@@ -11,6 +14,12 @@ pipeline {
             steps {
                 dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'Default'
             }
+        }
+
+        stage("NodeJS test")
+        steps{
+            echo "simple test below"
+            sh 'npm config ls'
         }
 	}
 
