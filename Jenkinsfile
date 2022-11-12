@@ -16,10 +16,11 @@ pipeline {
             }
         }
 
-        stage("NodeJS test")
-        steps{
-            echo "simple test below"
-            sh 'npm config ls'
+        stage("NodeJS test"){
+            steps{
+                echo "simple test below"
+                sh 'npm config ls'
+            }
         }
 	}
 
