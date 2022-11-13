@@ -32,6 +32,12 @@ pipeline {
                 echo "test completed"
             }
         }
+
+        stage("Cloning outdated jquery for depcheck"){
+            steps{
+                git "https://github.com/0xprime/JenkinsDependencyCheckTest"
+            }
+        }
 	}
 
     post {
